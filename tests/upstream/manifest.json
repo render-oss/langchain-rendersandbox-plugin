@@ -1,0 +1,10 @@
+{
+  "repository": "langchain-ai/langchain",
+  "commit": "b060a7466482ed5dac5fa1ef12e3ad21cccce385",
+  "source_path": "libs/standard-tests/langchain_tests/integration_tests/sandboxes.py",
+  "sha256": "b6d093acc6ba462430b3cf352657908615b92c0e2580b90d485d0fbb88a943ae",
+  "license": "MIT",
+  "license_sha256": "4ec67e4ca6e6721dba849b2ca82261597c86a61ee214bbf21416006b7b2d0478",
+  "expected_cases": 87,
+  "note": "Unmodified upstream test source. Update source, license, revision and digests together; never change assertions locally."
+}

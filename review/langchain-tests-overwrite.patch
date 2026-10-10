@@ -1,0 +1,34 @@
+--- a/libs/standard-tests/langchain_tests/integration_tests/sandboxes.py
++++ b/libs/standard-tests/langchain_tests/integration_tests/sandboxes.py
+@@ -694,22 +694,23 @@
+         exec_result = sandbox_backend.execute(f"cat {_quote(test_path)}")
+         assert exec_result.output.strip() == content
+ 
+-    def test_write_existing_file_fails(
+-        self, sandbox_backend: SandboxBackendProtocol, sandbox_test_root: str
+-    ) -> None:
+-        """Writing to an existing file should return an error without overwriting."""
++    def test_write_existing_file_overwrites(
++        self, sandbox_backend: SandboxBackendProtocol, sandbox_test_root: str
++    ) -> None:
++        """Writing to an existing file should replace its contents."""
+         if not self.has_sync:
+             pytest.skip("Sync tests not supported.")
+ 
+         test_path = self.sandbox_path("existing.txt", root_dir=sandbox_test_root)
+-        sandbox_backend.write(test_path, "First content")
++        first_result = sandbox_backend.write(test_path, "First content")
++        assert first_result.error is None
+ 
+         result = sandbox_backend.write(test_path, "Second content")
+ 
+-        assert result.error is not None
+-        assert "already exists" in result.error.lower()
++        assert result.error is None
++        assert result.path == test_path
+         exec_result = sandbox_backend.execute(f"cat {_quote(test_path)}")
+-        assert exec_result.output.strip() == "First content"
++        assert exec_result.output.strip() == "Second content"
+ 
+     def test_write_special_characters(
+         self, sandbox_backend: SandboxBackendProtocol, sandbox_test_root: str

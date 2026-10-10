@@ -1,0 +1,99 @@
+name: Integration checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    name: Package / ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: ['3.11', '3.12', '3.13', '3.14']
+        include:
+          - os: macos-latest
+            python: '3.12'
+          - os: windows-latest
+            python: '3.12'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: '0.12.1'
+          enable-cache: false
+      - run: uv sync --frozen --group dev
+      - run: uv run --no-sync ruff check langchain_render tests examples scripts
+      - run: uv run --no-sync ruff format --check langchain_render tests examples scripts
+      - run: uv run --no-sync ty check langchain_render
+      - run: uv build
+      - name: Install the built wheel
+        run: uv run --no-sync python scripts/install_wheel.py
+      - name: Check installed code, licenses and source archive
+        run: uv run --no-sync python -I scripts/check_distribution.py
+      - name: Test the installed wheel, excluding checkout imports
+        run: uv run --no-sync python -I -m pytest --import-mode=importlib tests/unit_tests -q --junitxml=.artifacts/unit.xml
+      - name: Verify the pinned upstream suite collects
+        run: uv run --no-sync python -I -m pytest --import-mode=importlib tests/integration_tests/test_repository_standard.py --collect-only -q
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: package-${{ matrix.os }}-${{ matrix.python }}
+          path: |
+            dist/
+            .artifacts/*.xml
+          include-hidden-files: true
+          if-no-files-found: error
+
+  live:
+    name: Live Render / Python 3.12
+    # Fork/PR code never receives Render credentials automatically.
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: sandbox-integration
+    concurrency:
+      group: render-live-${{ github.repository }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: '0.12.1'
+          enable-cache: false
+      - run: uv sync --frozen --group dev
+      - run: uv build
+      - run: uv run --no-sync python scripts/install_wheel.py
+      - run: uv run --no-sync python -I scripts/check_distribution.py
+      - name: Run runtime and unmodified LangChain tests against the wheel
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_WORKSPACE_ID: ${{ secrets.RENDER_WORKSPACE_ID }}
+          RUN_RENDER_LIVE_TESTS: '1'
+        run: uv run --no-sync python -I -m pytest --import-mode=importlib tests/integration_tests/test_runtime.py tests/integration_tests/test_repository_standard.py -v -s --tb=short --timeout=180 --junitxml=.artifacts/live.xml
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: render-live-results
+          path: .artifacts/*.xml
+          include-hidden-files: true
+          if-no-files-found: error

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "langchain-render"
+version = "0.0.1a1"
+description = "Render Sandboxes backend for LangChain Deep Agents"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Render" }]
+requires-python = ">=3.11,<4.0"
+dependencies = ["deepagents>=0.7.23,<0.8", "render>=1.2.0,<1.3"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["langchain_render"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/langchain_render", "/tests", "/examples", "/scripts", "/docs", "/review", "/validation", "/.github", "/README.md", "/VALIDATION.md", "/LICENSE", "/AGENTS.md", "/pyproject.toml", "/uv.lock", "/.env.example", "/.gitignore"]
+
+[dependency-groups]
+dev = ["langchain-tests==1.1.9", "pytest>=9.0.3,<10", "pytest-asyncio>=1.3,<2", "pytest-timeout>=2.4,<3", "ruff>=0.15,<1", "ty>=0.0.54,<1", "build>=1.4,<2"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config"
+testpaths = ["tests/unit_tests"]
+asyncio_mode = "auto"
+markers = ["live: creates short-lived Render sandboxes and consumes quota"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["tests/upstream"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+ignore = ["E501", "ASYNC109"]
