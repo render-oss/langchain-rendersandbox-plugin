@@ -2,11 +2,12 @@
 
 `langchain-render` runs LangChain Deep Agents' shell and file tools in [Render Sandboxes](https://render.com/docs/sandboxes). Your agent runs in your application; commands and files live in the remote sandbox.
 
-**Development preview:** the Python package is not on PyPI yet. The LangChain standard suite has seven known contract differences. See [validation status](VALIDATION.md).
-
 ## Prerequisites
 
-Python 3.11+, [uv](https://docs.astral.sh/uv/getting-started/installation/), and a [Render workspace with Sandboxes enabled](https://render.com/docs/sandboxes#1-confirm-access) (early access). The example uses Claude Sonnet 4.6.
+- Python 3.11+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/)
+- A [Render workspace with Sandboxes enabled](https://render.com/docs/sandboxes#1-confirm-access) (early access)
+- Claude Sonnet 4.6 for the example
 
 ## Install the review build
 

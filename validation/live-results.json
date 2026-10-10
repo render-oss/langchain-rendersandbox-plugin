@@ -175,7 +175,18 @@
     "sbx-18p4gdb4qcc8473hc738oj4ig": "terminated",
     "sbx-18p4gdb4qcd2d0e5s73d47nng": "terminated",
     "sbx-18p4gdb4qcho473hc738ojmg0": "terminated",
-    "sbx-18p4gdb4qcm0473hc738ok4i0": "terminated"
+    "sbx-18p4gdb4qcm0473hc738ok4i0": "terminated",
+    "sbx-18p4gdb4qhsvlk1mc73fm074g": "terminated",
+    "sbx-18p4gdb4qhu7lk1mc73fm09ag": "terminated",
+    "sbx-18p4gdb4qhvijnfac738652j0": "terminated",
+    "sbx-18p4gdb4qi1qd0e5s73d4ohag": "terminated",
+    "sbx-18p4gdb4qi2o473hc738p67j0": "terminated",
+    "sbx-18p4gdb4qi58473hc738p6ee0": "terminated",
+    "sbx-18p4gdb4qi60473hc738p6go0": "terminated",
+    "sbx-18p4gdb4qi60473hc738p6gog": "terminated",
+    "sbx-18p4gdb4qi6vlot8c73cldipg": "terminated",
+    "sbx-18p4gdb4qib142hec73ekkrng": "terminated",
+    "sbx-18p4gdb4qifg473hc738p7gt0": "terminated"
   },
   "real_model_repair_run": true,
   "upstream_source_modified": false,
@@ -184,19 +195,19 @@
     "live-transient-rerun"
   ],
   "tested_source_sha256": {
-    "langchain_render/session.py": "a7e2bf7a4ac04a7a9f98917dff39a56be1c156d6e3a9745ea03ec1afd5caece7",
     "langchain_render/__init__.py": "9b5ff25581add7f3301be6140e8b022c5860cae627bd3f85c9d8b8581b97c2d0",
     "langchain_render/sandbox.py": "4c32b82e9a598ad7800e8a0b1c209790ce4accbdacbdc4c33fc1f7988398bc11",
+    "langchain_render/session.py": "a7e2bf7a4ac04a7a9f98917dff39a56be1c156d6e3a9745ea03ec1afd5caece7",
+    "tests/integration_tests/test_repository_standard.py": "c853b45cbcb9288f8ba922ffd2df0f461c117335979973003bd27f5eacebed44",
+    "tests/integration_tests/test_runtime.py": "c821b12c06fa300f1552b9324f7d2f06224ccc4355f4e394b03ba1717bdf310c",
+    "tests/integration_tests/test_standard.py": "07ba62b07c61233c7968b5710eff2b91ba5d165db4e3c34730987bddd1f54c16",
     "tests/unit_tests/test_lifecycle.py": "9aefcf3ff7aabf7c41ee9babcd1ce65126e55a01948058be4c705c87d592c0d6",
     "tests/unit_tests/test_sandbox.py": "965d431077b4b7d7e6ce43dd3065c2a7b2531bcffa1a44d108e4a2057053643f",
-    "tests/integration_tests/test_standard.py": "07ba62b07c61233c7968b5710eff2b91ba5d165db4e3c34730987bddd1f54c16",
-    "tests/integration_tests/test_runtime.py": "c821b12c06fa300f1552b9324f7d2f06224ccc4355f4e394b03ba1717bdf310c",
-    "tests/integration_tests/test_repository_standard.py": "c853b45cbcb9288f8ba922ffd2df0f461c117335979973003bd27f5eacebed44",
     "tests/upstream/sandboxes.py": "b6d093acc6ba462430b3cf352657908615b92c0e2580b90d485d0fbb88a943ae",
-    "examples/repair_project.py": "a5f61650eab8f893402b4ce1dd77aff3e4dd661e7aa0402fc7c7a291f06e9ce1",
     "examples/lifecycle.py": "b35d3eebde4c5599d4b4f6851e3f1534197b35806c2705db03a2eff04923a4b4",
-    "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029",
-    "scripts/check_distribution.py": "84bde3612c6361249e93ca5cb7959388925649dd6f0eb8675336df2d0ff35d21"
+    "examples/repair_project.py": "a5f61650eab8f893402b4ce1dd77aff3e4dd661e7aa0402fc7c7a291f06e9ce1",
+    "scripts/check_distribution.py": "84bde3612c6361249e93ca5cb7959388925649dd6f0eb8675336df2d0ff35d21",
+    "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029"
   },
   "live_runtime_cases_passed": [
     "test_deep_agent_dispatches_file_and_shell_tools_to_render",
@@ -245,7 +256,7 @@
     "failed": 7,
     "errors": 0,
     "skipped": 0,
-    "elapsed_seconds": 198.517
+    "elapsed_seconds": 193.881
   },
   "session_helper_run": {
     "tests": 6,
@@ -2982,5 +2993,136 @@
       "windows_unit_tests_passed": 61,
       "windows_collection_error": "Git CRLF conversion changed pinned upstream bytes. LF-normalizing the Windows artifact reproduces both expected hashes."
     }
+  },
+  "readme_prerequisites_run": {
+    "started_at": "2026-10-10T02:54:41.558890+00:00",
+    "command": [
+      "<checkout>/.venv/bin/python",
+      "-I",
+      "-m",
+      "pytest",
+      "--import-mode=importlib",
+      "tests/integration_tests/test_runtime.py",
+      "tests/integration_tests/test_repository_standard.py",
+      "-v",
+      "-s",
+      "--tb=short",
+      "--timeout=180",
+      "--junitxml=<checkout>/.loop/readme-prerequisites-verification/live.xml"
+    ],
+    "upstream": {
+      "repository": "langchain-ai/langchain",
+      "commit": "b060a7466482ed5dac5fa1ef12e3ad21cccce385",
+      "source_path": "libs/standard-tests/langchain_tests/integration_tests/sandboxes.py",
+      "sha256": "b6d093acc6ba462430b3cf352657908615b92c0e2580b90d485d0fbb88a943ae",
+      "license": "MIT",
+      "license_sha256": "4ec67e4ca6e6721dba849b2ca82261597c86a61ee214bbf21416006b7b2d0478",
+      "expected_cases": 87,
+      "note": "Unmodified upstream test source. Update source, license, revision and digests together; never change assertions locally."
+    },
+    "tested_source_sha256": {
+      "langchain_render/__init__.py": "9b5ff25581add7f3301be6140e8b022c5860cae627bd3f85c9d8b8581b97c2d0",
+      "langchain_render/sandbox.py": "4c32b82e9a598ad7800e8a0b1c209790ce4accbdacbdc4c33fc1f7988398bc11",
+      "langchain_render/session.py": "a7e2bf7a4ac04a7a9f98917dff39a56be1c156d6e3a9745ea03ec1afd5caece7",
+      "tests/integration_tests/test_repository_standard.py": "c853b45cbcb9288f8ba922ffd2df0f461c117335979973003bd27f5eacebed44",
+      "tests/integration_tests/test_runtime.py": "c821b12c06fa300f1552b9324f7d2f06224ccc4355f4e394b03ba1717bdf310c",
+      "tests/integration_tests/test_standard.py": "07ba62b07c61233c7968b5710eff2b91ba5d165db4e3c34730987bddd1f54c16",
+      "tests/unit_tests/test_lifecycle.py": "9aefcf3ff7aabf7c41ee9babcd1ce65126e55a01948058be4c705c87d592c0d6",
+      "tests/unit_tests/test_sandbox.py": "965d431077b4b7d7e6ce43dd3065c2a7b2531bcffa1a44d108e4a2057053643f",
+      "tests/upstream/sandboxes.py": "b6d093acc6ba462430b3cf352657908615b92c0e2580b90d485d0fbb88a943ae",
+      "examples/lifecycle.py": "b35d3eebde4c5599d4b4f6851e3f1534197b35806c2705db03a2eff04923a4b4",
+      "examples/repair_project.py": "a5f61650eab8f893402b4ce1dd77aff3e4dd661e7aa0402fc7c7a291f06e9ce1",
+      "scripts/check_distribution.py": "84bde3612c6361249e93ca5cb7959388925649dd6f0eb8675336df2d0ff35d21",
+      "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029"
+    },
+    "readme_sha256": "d2f68c4899a45e3c2e390cb7b315fb7dc66e9aa6a18747df79a11464200e9e92",
+    "unit_summary": ".............................................................            [100%]\n61 passed in 3.12s",
+    "exit_code": 1,
+    "elapsed_seconds": 271.165,
+    "finished_at": "2026-10-10T02:59:12.736633+00:00",
+    "combined_live_summary": {
+      "tests": 97,
+      "passed": 90,
+      "failed": 7,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 270.227,
+      "junit_sha256": "c3ee07b12409e1ce562aff7f9f7bf338815117ae1531e48604287feea6be1dc6"
+    },
+    "runtime_cases": [
+      {
+        "name": "test_deep_agent_dispatches_file_and_shell_tools_to_render",
+        "outcome": "passed",
+        "seconds": 5.268
+      },
+      {
+        "name": "test_current_deepagents_write_and_glob_contract",
+        "outcome": "passed",
+        "seconds": 6.172
+      },
+      {
+        "name": "test_uncertain_execution_aborts_backend_and_owned_session_cleans_up[deadline]",
+        "outcome": "passed",
+        "seconds": 8.387
+      },
+      {
+        "name": "test_uncertain_execution_aborts_backend_and_owned_session_cleans_up[cancel]",
+        "outcome": "passed",
+        "seconds": 4.341
+      },
+      {
+        "name": "test_full_repair_walkthrough_with_scripted_model",
+        "outcome": "passed",
+        "seconds": 9.939
+      },
+      {
+        "name": "test_package_session_configuration_sdk_access_and_cleanup",
+        "outcome": "passed",
+        "seconds": 2.625
+      },
+      {
+        "name": "test_concurrent_sessions_isolate_files_and_cleanup_after_application_error",
+        "outcome": "passed",
+        "seconds": 3.198
+      },
+      {
+        "name": "test_invalid_render_key_fails_without_starting_remote_work",
+        "outcome": "passed",
+        "seconds": 0.146
+      },
+      {
+        "name": "test_all_public_backend_operations[sync]",
+        "outcome": "passed",
+        "seconds": 17.305
+      },
+      {
+        "name": "test_all_public_backend_operations[async]",
+        "outcome": "passed",
+        "seconds": 17.254
+      }
+    ],
+    "upstream_summary": {
+      "tests": 87,
+      "passed": 80,
+      "failed": 7,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 193.881
+    },
+    "new_failing_cases": [],
+    "owned_sandbox_final_states": {
+      "sbx-18p4gdb4qhsvlk1mc73fm074g": "terminated",
+      "sbx-18p4gdb4qhu7lk1mc73fm09ag": "terminated",
+      "sbx-18p4gdb4qhvijnfac738652j0": "terminated",
+      "sbx-18p4gdb4qi1qd0e5s73d4ohag": "terminated",
+      "sbx-18p4gdb4qi2o473hc738p67j0": "terminated",
+      "sbx-18p4gdb4qi58473hc738p6ee0": "terminated",
+      "sbx-18p4gdb4qi60473hc738p6go0": "terminated",
+      "sbx-18p4gdb4qi60473hc738p6gog": "terminated",
+      "sbx-18p4gdb4qi6vlot8c73cldipg": "terminated",
+      "sbx-18p4gdb4qib142hec73ekkrng": "terminated",
+      "sbx-18p4gdb4qifg473hc738p7gt0": "terminated"
+    },
+    "cleanup_independently_rechecked": true
   }
 }
