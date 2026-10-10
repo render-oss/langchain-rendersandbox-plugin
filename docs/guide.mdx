@@ -4,15 +4,6 @@ sidebarTitle: "Render"
 description: "Use Render Sandboxes with Deep Agents to run commands, edit files, and verify a code repair."
 ---
 
-{/* Editorial handoff: LangChain documentation guide.
-Intended destination: langchain-ai/docs,
-src/oss/python/integrations/sandboxes/render.mdx.
-The source repository is render-oss/langchain-rendersandbox-plugin. The Python package
-is not released on PyPI. Before submitting this guide, verify it in LangChain's
-documentation pipeline and resolve the release gates recorded in VALIDATION.md.
-Keep this as the only canonical guide until it is moved into LangChain docs.
-*/}
-
 <Info>
 Render Sandboxes is in early access. APIs, defaults, and limits can change. Discuss production workloads with your Render contact. This integration is currently available in Python only.
 </Info>
@@ -194,11 +185,33 @@ A failed test returns a nonzero exit code that the agent can inspect and recover
 
 ## Use the integration in your application
 
-Use `sandbox_session(...)` when the application should create and clean up a sandbox for one task. Pass configuration such as `timeout_seconds`, `env`, or `snapshot_id` when creating the session. Download wanted results before its context exits.
+Use `sandbox_session(...)` when the application should create and clean up a sandbox for one task. Creation options are `timeout_seconds`, `network_policy`, `env`, `plan`, `region`, and either `snapshot_id` or `snapshot_name`. Download wanted results before its context exits.
 
-If your application already owns a running sandbox, attach it with `RenderSandbox(sandbox_id=...)` and pass that backend to Deep Agents. Your application remains responsible for terminating it.
+Both the session helper and `RenderSandbox` accept `token`, `owner_id`, and `base_url`. By default, credentials come from `RENDER_API_KEY` and `RENDER_WORKSPACE_ID` in your application environment. Only values explicitly passed through `env` enter the sandbox.
+
+If your application already owns a sandbox, wait until it is running, then attach its ID:
+
+```python
+from langchain_render import RenderSandbox
+
+backend = RenderSandbox(sandbox_id="YOUR_RUNNING_SANDBOX_ID")
+result = backend.execute("printf 'hello from Render\\n'", timeout=30)
+print(result.output)
+```
+
+Pass this backend to Deep Agents. Your application remains responsible for terminating it. `delete(path)` and `adelete(path)` remove files or directories; they do not terminate the sandbox.
 
 For snapshots, directory transfers, and streaming output, use the <a href="https://render.com/docs/sandboxes-sdk-python" target="_blank" rel="noopener noreferrer">Render Python SDK</a> with `backend.id`. These operations use the same sandbox. Restoring a snapshot creates a new sandbox; it does not automatically restore the agent's conversation state.
+
+### Runtime behavior
+
+- **Command results:** Nonzero exits are returned in `exit_code`. Output combines stdout and stderr in arrival order. `max_output_chars` defaults to 2,097,152 characters; excess output is drained and `truncated=True` reports the loss.
+- **Deadlines:** Commands default to 300 seconds; `timeout=0` disables the command deadline. A timeout, cancellation, missing exit event, or execution transport failure makes the backend unusable. Closing the stream does not stop the remote command. End the run and terminate the sandbox through its owning session or the SDK.
+- **Retries:** Explicit HTTP 429 rejections allow up to six retries within the deadline. Commands are never replayed after an execution event or an ambiguous transport failure.
+- **File transfers:** Use absolute paths. Results preserve input order; downloads return bytes, not directory archives. Recognized missing-file and permission errors are reported per file. Authentication, connectivity, and ambiguous SDK failures raise `RenderSandboxError`.
+- **File deadlines:** `file_timeout` defaults to 300 seconds per transfer, after the directory probe. Local disk work can outlast that cooperative deadline. Cancellation waits for adapter-owned file workers before removing temporary files.
+
+Use async equivalents such as `aexecute`, `aread`, `awrite`, `aupload_files`, and `adownload_files` from async applications. Persistent interpreter state, automatic pause/resume, and checkpoint-based sandbox restoration are not implemented by this integration.
 
 ## Related documentation
 

@@ -65,7 +65,7 @@ The helper creates a sandbox, waits for readiness, and verifies termination on e
 
 - [Integration guide](docs/guide.mdx): repair a Python program and verify the result.
 - [Examples](examples): connection check and complete agent workflow.
-- [Configuration and existing sandboxes](VALIDATION.md#configuration-and-existing-sandboxes), plus [runtime behavior](VALIDATION.md#execution-and-file-behavior).
-- [Development and testing](VALIDATION.md#reproduce-the-internal-review-build).
+- [Configuration and runtime behavior](docs/guide.mdx#use-the-integration-in-your-application).
+- [Development and testing](CONTRIBUTING.md).
 
 [Apache-2.0](LICENSE).
