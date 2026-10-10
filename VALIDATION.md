@@ -2,13 +2,13 @@
 
 Development preview `langchain-render==0.0.1a1`. The source repository is [render-oss/langchain-rendersandbox-plugin](https://github.com/render-oss/langchain-rendersandbox-plugin); the Python package is not released on PyPI. The integration is not fully compliant with the pinned LangChain standard suite.
 
-Local validation on October 9, 2026 (270.88 seconds for the combined 97-case live run) passed **61 unit tests and all ten real-Render runtime checks**. The full unmodified LangChain suite returned **80 passed and 7 failed**, with no errors or skips. The seven failures are the documented upstream write/glob contract differences below. Test results are not suppressed. All eleven test sandboxes were independently confirmed terminated. Exact evidence is in [live-results.json](validation/live-results.json).
+Local validation on October 9, 2026 (277.23 seconds for the combined 97-case live run) passed **61 unit tests and all ten real-Render runtime checks**. The full unmodified LangChain suite returned **80 passed and 7 failed**, with no errors or skips. The seven failures are the documented upstream write/glob contract differences below. Test results are not suppressed. All twelve sandboxes from the tests and the connection example were independently confirmed terminated. The connection example and scripted live suites ran without model API keys. Exact evidence is in [live-results.json](validation/live-results.json).
 
 The complete repair example also passed with Claude Sonnet 4.6: the application restored trusted tests, verified all three cases, downloaded a report totaling 42, and confirmed sandbox cleanup. See [real-model evidence](validation/real-model-repair.json). This was a separate earlier model run, not part of each validation rerun.
 
 [Live run evidence](validation/live-results.json) and [upstream suite evidence](validation/repository-suite-results.json) retain the latest source hashes, per-case results, failures, and verified cleanup. Local filesystem paths and workspace details are redacted. [Historical evidence](https://github.com/render-oss/langchain-rendersandbox-plugin/tree/c8de5eeb0282b07125cbec6b6ebbf6db174e6e90/validation) remains available in Git history, including earlier stream connection failures whose cause was not established by later successful runs.
 
-The [integration guide](docs/guide.mdx) targets LangChain documentation. Its MDX, Mermaid syntax, and links were checked locally. Native LangChain site preview and documentation submission remain pending.
+The [integration guide](docs/guide.mdx) is submitted in [LangChain docs draft PR #6599](https://github.com/langchain-ai/docs/pull/6599). Its native desktop and mobile preview, build, and prose checks passed. The guide identifies Anthropic as the example provider and explains how to configure another compatible model. Hosted Mintlify preview requires a LangChain maintainer because the workflow skips fork PRs.
 
 ## Operation coverage
 
@@ -31,7 +31,7 @@ Every public backend method now has a real-Render check through both the synchro
 
 Fetched and ran the unmodified [sandbox suite at LangChain commit b060a746](https://github.com/langchain-ai/langchain/blob/b060a7466482ed5dac5fa1ef12e3ad21cccce385/libs/standard-tests/langchain_tests/integration_tests/sandboxes.py) on October 9, 2026. The repository still declares package version 1.1.9, but its source contains `test_execute_capture_at_source_offload`, which is absent from the published wheel. An AST comparison confirmed the other 85 test methods are identical. Including the inherited no-overrides check, the repository suite collects 87 cases.
 
-**Latest result: 80 passed, 7 failed, no errors or skips**, after the repository cleanup (270.88 seconds for the combined runtime and upstream run). All ten runtime checks also passed. Exact source hashes are recorded with the current results; earlier runs remain in Git history.
+**Latest result: 80 passed, 7 failed, no errors or skips**, after clarifying the guide's model-provider credentials (277.23 seconds for the combined runtime and upstream run). All ten runtime checks also passed. Exact source hashes are recorded with the current results; earlier runs remain in Git history.
 
 The seven failures are the write/glob expectations listed below. Each also fails against the unchanged `BaseSandbox` with a trusted local command/file transport and no Render dependency. `RenderSandbox.write` and `RenderSandbox.glob` are the inherited methods by identity. This isolates the disagreement to the upstream test/current base-class contract, rather than this provider's transport. Full suite provenance, source hashes, individual outcomes and reproduction results are in [repository-suite-results.json](validation/repository-suite-results.json).
 

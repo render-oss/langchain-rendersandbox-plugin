@@ -18,7 +18,7 @@
     "failed": 7,
     "errors": 0,
     "skipped": 0,
-    "elapsed_seconds": 194.105
+    "elapsed_seconds": 200.371
   },
   "suite_unchanged": true,
   "no_test_overrides_check_passed": true,
@@ -39,11 +39,11 @@
     "-s",
     "--tb=short",
     "--timeout=180",
-    "--junitxml=<checkout>/.loop/repository-cleanup-verification/live.xml"
+    "--junitxml=<checkout>/.loop/model-provider-clarification/live.xml"
   ],
   "fixture": "tests/integration_tests/test_standard.py::TestRenderSandboxStandard.sandbox",
   "sandbox": {
-    "id": "sbx-18p4gdb4qn3p42hec73el5rkg",
+    "id": "sbx-18p4gdb4r9fh42hec73en26r0",
     "final_status": "terminated",
     "independently_rechecked": true
   },
@@ -60,7 +60,8 @@
     "examples/lifecycle.py": "b35d3eebde4c5599d4b4f6851e3f1534197b35806c2705db03a2eff04923a4b4",
     "examples/repair_project.py": "a5f61650eab8f893402b4ce1dd77aff3e4dd661e7aa0402fc7c7a291f06e9ce1",
     "scripts/check_distribution.py": "84bde3612c6361249e93ca5cb7959388925649dd6f0eb8675336df2d0ff35d21",
-    "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029"
+    "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029",
+    "docs/guide.mdx": "f3893505b9c32d0f951cd70162f326d4f288e570adc2d4544398588cfde4a0f2"
   },
   "contract_reproduction_without_Render": [
     {
@@ -108,119 +109,119 @@
     {
       "name": "test_write_new_file",
       "outcome": "passed",
-      "seconds": 3.393
+      "seconds": 3.446
     },
     {
       "name": "test_read_basic_file",
       "outcome": "passed",
-      "seconds": 1.607
+      "seconds": 2.473
     },
     {
       "name": "test_read_binary_file",
       "outcome": "passed",
-      "seconds": 1.022
+      "seconds": 0.997
     },
     {
       "name": "test_read_binary_file_100_kib",
       "outcome": "passed",
-      "seconds": 1.221
+      "seconds": 1.079
     },
     {
       "name": "test_read_binary_file_1_mib_returns_error",
       "outcome": "passed",
-      "seconds": 1.309
+      "seconds": 1.342
     },
     {
       "name": "test_execute_large_stdout_payload",
       "outcome": "passed",
-      "seconds": 0.587
+      "seconds": 0.602
     },
     {
       "name": "test_execute_capture_at_source_offload",
       "outcome": "passed",
-      "seconds": 2.279
+      "seconds": 2.181
     },
     {
       "name": "test_edit_single_occurrence",
       "outcome": "passed",
-      "seconds": 1.921
+      "seconds": 1.933
     },
     {
       "name": "test_ls_lists_files",
       "outcome": "passed",
-      "seconds": 2.666
+      "seconds": 2.175
     },
     {
       "name": "test_glob",
       "outcome": "failed",
-      "seconds": 2.737,
+      "seconds": 2.017,
       "failure": "AssertionError",
       "failure_details": "tests/upstream/sandboxes.py:359: in test_glob\n    assert [m[\"path\"] for m in result.matches] == [\"x.py\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError"
     },
     {
       "name": "test_grep_literal",
       "outcome": "passed",
-      "seconds": 1.495
+      "seconds": 1.322
     },
     {
       "name": "test_upload_single_file",
       "outcome": "passed",
-      "seconds": 0.984
+      "seconds": 0.749
     },
     {
       "name": "test_download_single_file",
       "outcome": "passed",
-      "seconds": 1.544
+      "seconds": 1.352
     },
     {
       "name": "test_upload_download_roundtrip",
       "outcome": "passed",
-      "seconds": 1.405
+      "seconds": 1.209
     },
     {
       "name": "test_upload_multiple_files_order_preserved",
       "outcome": "passed",
-      "seconds": 1.349
+      "seconds": 1.267
     },
     {
       "name": "test_download_multiple_files_order_preserved",
       "outcome": "passed",
-      "seconds": 4.159
+      "seconds": 3.809
     },
     {
       "name": "test_upload_binary_content_roundtrip",
       "outcome": "passed",
-      "seconds": 1.322
+      "seconds": 2.235
     },
     {
       "name": "test_upload_large_file_reports_expected_size",
       "outcome": "passed",
-      "seconds": 3.511
+      "seconds": 2.927
     },
     {
       "name": "test_download_error_file_not_found",
       "outcome": "passed",
-      "seconds": 0.954
+      "seconds": 0.906
     },
     {
       "name": "test_download_error_is_directory",
       "outcome": "passed",
-      "seconds": 1.009
+      "seconds": 0.852
     },
     {
       "name": "test_download_error_permission_denied",
       "outcome": "passed",
-      "seconds": 1.89
+      "seconds": 1.587
     },
     {
       "name": "test_download_error_invalid_path_relative",
       "outcome": "passed",
-      "seconds": 0.002
+      "seconds": 0.001
     },
     {
       "name": "test_upload_missing_parent_dir_or_roundtrip",
       "outcome": "passed",
-      "seconds": 2.077
+      "seconds": 1.982
     },
     {
       "name": "test_upload_relative_path_returns_invalid_path",
@@ -230,335 +231,335 @@
     {
       "name": "test_write_creates_parent_dirs",
       "outcome": "passed",
-      "seconds": 1.544
+      "seconds": 1.214
     },
     {
       "name": "test_write_existing_file_fails",
       "outcome": "failed",
-      "seconds": 2.107,
+      "seconds": 1.767,
       "failure": "AssertionError",
       "failure_details": "tests/upstream/sandboxes.py:709: in test_write_existing_file_fails\n    assert result.error is not None\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError"
     },
     {
       "name": "test_write_special_characters",
       "outcome": "passed",
-      "seconds": 1.514
+      "seconds": 1.341
     },
     {
       "name": "test_write_empty_file",
       "outcome": "passed",
-      "seconds": 1.381
+      "seconds": 1.28
     },
     {
       "name": "test_write_path_with_spaces",
       "outcome": "passed",
-      "seconds": 1.422
+      "seconds": 1.336
     },
     {
       "name": "test_write_unicode_content",
       "outcome": "passed",
-      "seconds": 1.351
+      "seconds": 1.237
     },
     {
       "name": "test_write_consecutive_slashes_in_path",
       "outcome": "passed",
-      "seconds": 1.351
+      "seconds": 1.384
     },
     {
       "name": "test_write_very_long_content",
       "outcome": "passed",
-      "seconds": 1.553
+      "seconds": 1.413
     },
     {
       "name": "test_write_content_with_only_newlines",
       "outcome": "passed",
-      "seconds": 1.374
+      "seconds": 1.353
     },
     {
       "name": "test_read_nonexistent_file",
       "outcome": "passed",
-      "seconds": 0.498
+      "seconds": 0.375
     },
     {
       "name": "test_read_empty_file",
       "outcome": "passed",
-      "seconds": 1.355
+      "seconds": 1.32
     },
     {
       "name": "test_read_with_offset",
       "outcome": "passed",
-      "seconds": 1.306
+      "seconds": 1.271
     },
     {
       "name": "test_read_with_limit",
       "outcome": "passed",
-      "seconds": 1.371
+      "seconds": 2.148
     },
     {
       "name": "test_read_with_offset_and_limit",
       "outcome": "passed",
-      "seconds": 1.529
+      "seconds": 1.737
     },
     {
       "name": "test_read_unicode_content",
       "outcome": "passed",
-      "seconds": 1.406
+      "seconds": 2.081
     },
     {
       "name": "test_read_file_with_very_long_lines",
       "outcome": "passed",
-      "seconds": 1.237
+      "seconds": 2.199
     },
     {
       "name": "test_read_with_zero_limit",
       "outcome": "passed",
-      "seconds": 1.522
+      "seconds": 1.457
     },
     {
       "name": "test_read_offset_beyond_file_length",
       "outcome": "passed",
-      "seconds": 1.612
+      "seconds": 1.61
     },
     {
       "name": "test_read_offset_at_exact_file_length",
       "outcome": "passed",
-      "seconds": 1.575
+      "seconds": 1.441
     },
     {
       "name": "test_read_very_large_file_in_chunks",
       "outcome": "passed",
-      "seconds": 2.44
+      "seconds": 2.412
     },
     {
       "name": "test_edit_multiple_occurrences_without_replace_all",
       "outcome": "passed",
-      "seconds": 1.944
+      "seconds": 1.885
     },
     {
       "name": "test_edit_multiple_occurrences_with_replace_all",
       "outcome": "passed",
-      "seconds": 1.814
+      "seconds": 1.871
     },
     {
       "name": "test_edit_string_not_found",
       "outcome": "passed",
-      "seconds": 1.251
+      "seconds": 1.341
     },
     {
       "name": "test_edit_nonexistent_file",
       "outcome": "passed",
-      "seconds": 0.554
+      "seconds": 0.441
     },
     {
       "name": "test_edit_special_characters",
       "outcome": "passed",
-      "seconds": 2.14
+      "seconds": 2.192
     },
     {
       "name": "test_edit_multiline_support",
       "outcome": "passed",
-      "seconds": 1.819
+      "seconds": 1.781
     },
     {
       "name": "test_ls_lists_nested_directories",
       "outcome": "passed",
-      "seconds": 0.812
+      "seconds": 1.079
     },
     {
       "name": "test_ls_unicode_filenames",
       "outcome": "passed",
-      "seconds": 2.596
+      "seconds": 2.629
     },
     {
       "name": "test_ls_large_directory",
       "outcome": "passed",
-      "seconds": 0.853
+      "seconds": 0.819
     },
     {
       "name": "test_ls_path_with_trailing_slash",
       "outcome": "passed",
-      "seconds": 1.789
+      "seconds": 1.803
     },
     {
       "name": "test_ls_special_characters_in_filenames",
       "outcome": "passed",
-      "seconds": 3.596
+      "seconds": 3.638
     },
     {
       "name": "test_ls_path_is_sanitized",
       "outcome": "passed",
-      "seconds": 0.375
+      "seconds": 0.421
     },
     {
       "name": "test_read_path_is_sanitized",
       "outcome": "passed",
-      "seconds": 0.513
+      "seconds": 0.425
     },
     {
       "name": "test_grep_basic_search",
       "outcome": "passed",
-      "seconds": 2.549
+      "seconds": 2.72
     },
     {
       "name": "test_grep_with_glob_pattern",
       "outcome": "passed",
-      "seconds": 3.436
+      "seconds": 3.669
     },
     {
       "name": "test_grep_no_matches",
       "outcome": "passed",
-      "seconds": 1.81
+      "seconds": 1.767
     },
     {
       "name": "test_grep_multiple_matches_per_file",
       "outcome": "passed",
-      "seconds": 1.653
+      "seconds": 1.901
     },
     {
       "name": "test_grep_literal_string_matching",
       "outcome": "passed",
-      "seconds": 1.931
+      "seconds": 1.682
     },
     {
       "name": "test_grep_unicode_pattern",
       "outcome": "passed",
-      "seconds": 1.762
+      "seconds": 1.798
     },
     {
       "name": "test_grep_case_sensitivity",
       "outcome": "passed",
-      "seconds": 1.91
+      "seconds": 1.991
     },
     {
       "name": "test_grep_with_special_characters",
       "outcome": "passed",
-      "seconds": 2.218
+      "seconds": 2.243
     },
     {
       "name": "test_grep_empty_directory",
       "outcome": "passed",
-      "seconds": 0.921
+      "seconds": 0.934
     },
     {
       "name": "test_grep_across_nested_directories",
       "outcome": "passed",
-      "seconds": 3.228
+      "seconds": 3.932
     },
     {
       "name": "test_grep_with_globstar_include_pattern",
       "outcome": "passed",
-      "seconds": 2.542
+      "seconds": 2.708
     },
     {
       "name": "test_grep_reports_correct_line_numbers",
       "outcome": "passed",
-      "seconds": 1.748
+      "seconds": 1.618
     },
     {
       "name": "test_glob_basic_pattern",
       "outcome": "failed",
-      "seconds": 3.594,
+      "seconds": 3.537,
       "failure": "AssertionError",
       "failure_details": "tests/upstream/sandboxes.py:1552: in test_glob_basic_pattern\n    assert \"file1.txt\" in paths\n           ^^^^^^^^^^^^^^^^^^^^\nE   AssertionError"
     },
     {
       "name": "test_glob_recursive_pattern",
       "outcome": "passed",
-      "seconds": 3.641
+      "seconds": 3.345
     },
     {
       "name": "test_glob_no_matches",
       "outcome": "passed",
-      "seconds": 1.812
+      "seconds": 2.019
     },
     {
       "name": "test_glob_with_directories",
       "outcome": "failed",
-      "seconds": 1.661,
+      "seconds": 1.623,
       "failure": "AssertionError",
       "failure_details": "tests/upstream/sandboxes.py:1612: in test_glob_with_directories\n    assert len(result.matches) == 3\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError"
     },
     {
       "name": "test_glob_hidden_files_explicitly",
       "outcome": "failed",
-      "seconds": 3.742,
+      "seconds": 3.326,
       "failure": "AssertionError",
       "failure_details": "tests/upstream/sandboxes.py:1636: in test_glob_hidden_files_explicitly\n    assert \".hidden1\" in paths or \".hidden2\" in paths\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError"
     },
     {
       "name": "test_glob_with_character_class",
       "outcome": "failed",
-      "seconds": 4.694,
+      "seconds": 4.405,
       "failure": "AssertionError",
       "failure_details": "tests/upstream/sandboxes.py:1659: in test_glob_with_character_class\n    assert \"file1.txt\" in paths\n           ^^^^^^^^^^^^^^^^^^^^\nE   AssertionError"
     },
     {
       "name": "test_glob_with_question_mark",
       "outcome": "failed",
-      "seconds": 3.798,
+      "seconds": 3.426,
       "failure": "AssertionError",
       "failure_details": "tests/upstream/sandboxes.py:1683: in test_glob_with_question_mark\n    assert \"file1.txt\" in paths\n           ^^^^^^^^^^^^^^^^^^^^\nE   AssertionError"
     },
     {
       "name": "test_awrite_aread_large_text_payload",
       "outcome": "passed",
-      "seconds": 3.254
+      "seconds": 2.86
     },
     {
       "name": "test_aread_large_text_payload_paginated_roundtrip",
       "outcome": "passed",
-      "seconds": 12.824
+      "seconds": 12.259
     },
     {
       "name": "test_adownload_large_text_payload_roundtrip",
       "outcome": "passed",
-      "seconds": 3.443
+      "seconds": 3.508
     },
     {
       "name": "test_write_read_download_large_text_with_escaped_content",
       "outcome": "passed",
-      "seconds": 14.457
+      "seconds": 21.958
     },
     {
       "name": "test_awrite_aread_adownload_large_text_with_escaped_content",
       "outcome": "passed",
-      "seconds": 14.183
+      "seconds": 13.623
     },
     {
       "name": "test_aread_binary_image_file",
       "outcome": "passed",
-      "seconds": 0.798
+      "seconds": 0.805
     },
     {
       "name": "test_aread_binary_file_100_kib",
       "outcome": "passed",
-      "seconds": 1.056
+      "seconds": 1.201
     },
     {
       "name": "test_aread_binary_file_1_mib_returns_error",
       "outcome": "passed",
-      "seconds": 1.031
+      "seconds": 1.049
     },
     {
       "name": "test_aexecute_large_stdout_payload",
       "outcome": "passed",
-      "seconds": 0.775
+      "seconds": 0.682
     },
     {
       "name": "test_aupload_adownload_large_file_roundtrip",
       "outcome": "passed",
-      "seconds": 3.685
+      "seconds": 4.636
     }
   ],
-  "run_context": "Repository review drafts and repeated validation history removed; runtime, examples, dependencies and the unmodified upstream suite unchanged.",
+  "run_context": "Clarified that Anthropic is the example provider and that the connection check needs only Render credentials. Runtime, examples, dependencies and upstream tests unchanged.",
   "combined_run": {
     "tests": 97,
     "passed": 90,
     "failed": 7,
     "errors": 0,
     "skipped": 0,
-    "elapsed_seconds": 270.876,
-    "junit_sha256": "46a71f16821e5e66fc4d581c87279c6df34897be0615b49ddc2eb766034e10bb"
+    "elapsed_seconds": 277.234,
+    "junit_sha256": "438a2715bf47f19a9985831da6abc635311b8bad468a85101225def867ce2b7f"
   },
   "historical_evidence_url": "https://github.com/render-oss/langchain-rendersandbox-plugin/tree/c8de5eeb0282b07125cbec6b6ebbf6db174e6e90/validation"
 }

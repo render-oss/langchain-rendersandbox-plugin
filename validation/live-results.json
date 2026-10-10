@@ -12,7 +12,7 @@
     "-s",
     "--tb=short",
     "--timeout=180",
-    "--junitxml=<checkout>/.loop/repository-cleanup-verification/live.xml"
+    "--junitxml=<checkout>/.loop/model-provider-clarification/live.xml"
   ],
   "upstream": {
     "repository": "langchain-ai/langchain",
@@ -37,76 +37,77 @@
     "examples/lifecycle.py": "b35d3eebde4c5599d4b4f6851e3f1534197b35806c2705db03a2eff04923a4b4",
     "examples/repair_project.py": "a5f61650eab8f893402b4ce1dd77aff3e4dd661e7aa0402fc7c7a291f06e9ce1",
     "scripts/check_distribution.py": "84bde3612c6361249e93ca5cb7959388925649dd6f0eb8675336df2d0ff35d21",
-    "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029"
+    "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029",
+    "docs/guide.mdx": "f3893505b9c32d0f951cd70162f326d4f288e570adc2d4544398588cfde4a0f2"
   },
   "unit_summary": {
     "tests": 61,
     "passed": 61,
     "errors": 0,
     "skipped": 0,
-    "elapsed_seconds": 3.228
+    "elapsed_seconds": 3.22
   },
   "exit_code": 1,
-  "elapsed_seconds": 271.846,
+  "elapsed_seconds": 278.34,
   "combined_live_summary": {
     "tests": 97,
     "passed": 90,
     "failed": 7,
     "errors": 0,
     "skipped": 0,
-    "elapsed_seconds": 270.876,
-    "junit_sha256": "46a71f16821e5e66fc4d581c87279c6df34897be0615b49ddc2eb766034e10bb"
+    "elapsed_seconds": 277.234,
+    "junit_sha256": "438a2715bf47f19a9985831da6abc635311b8bad468a85101225def867ce2b7f"
   },
   "runtime_cases": [
     {
       "name": "test_deep_agent_dispatches_file_and_shell_tools_to_render",
       "outcome": "passed",
-      "seconds": 5.412
+      "seconds": 5.218
     },
     {
       "name": "test_current_deepagents_write_and_glob_contract",
       "outcome": "passed",
-      "seconds": 5.761
+      "seconds": 5.893
     },
     {
       "name": "test_uncertain_execution_aborts_backend_and_owned_session_cleans_up[deadline]",
       "outcome": "passed",
-      "seconds": 8.18
+      "seconds": 8.28
     },
     {
       "name": "test_uncertain_execution_aborts_backend_and_owned_session_cleans_up[cancel]",
       "outcome": "passed",
-      "seconds": 4.163
+      "seconds": 3.889
     },
     {
       "name": "test_full_repair_walkthrough_with_scripted_model",
       "outcome": "passed",
-      "seconds": 10.725
+      "seconds": 10.762
     },
     {
       "name": "test_package_session_configuration_sdk_access_and_cleanup",
       "outcome": "passed",
-      "seconds": 2.524
+      "seconds": 2.6
     },
     {
       "name": "test_concurrent_sessions_isolate_files_and_cleanup_after_application_error",
       "outcome": "passed",
-      "seconds": 2.984
+      "seconds": 3.106
     },
     {
       "name": "test_invalid_render_key_fails_without_starting_remote_work",
       "outcome": "passed",
-      "seconds": 0.231
+      "seconds": 0.119
     },
     {
       "name": "test_all_public_backend_operations[sync]",
       "outcome": "passed",
-      "seconds": 17.756
+      "seconds": 18.111
     },
     {
       "name": "test_all_public_backend_operations[async]",
       "outcome": "passed",
-      "seconds": 17.422
+      "seconds": 17.301
     }
   ],
   "upstream_summary": {
@@ -115,22 +116,31 @@
     "failed": 7,
     "errors": 0,
     "skipped": 0,
-    "elapsed_seconds": 194.105
+    "elapsed_seconds": 200.371
   },
   "owned_sandbox_final_states": {
-    "sbx-18p4gdb4qmh2jnfac7386jch0": "terminated",
-    "sbx-18p4gdb4qmiflk1mc73fme6b0": "terminated",
-    "sbx-18p4gdb4qmjvlot8c73cltfkg": "terminated",
-    "sbx-18p4gdb4qmltckfvc73ftoiug": "terminated",
-    "sbx-18p4gdb4qmmvlk1mc73fmeik0": "terminated",
-    "sbx-18p4gdb4qmpnlot8c73cltvug": "terminated",
-    "sbx-18p4gdb4qmq8473hc738pn240": "terminated",
-    "sbx-18p4gdb4qmqdckfvc73ftov8g": "terminated",
-    "sbx-18p4gdb4qmr142hec73el4re0": "terminated",
-    "sbx-18p4gdb4qmvflot8c73cluj70": "terminated",
-    "sbx-18p4gdb4qn3p42hec73el5rkg": "terminated"
+    "sbx-18p4gdb4r8rid0e5s73d70ge0": "terminated",
+    "sbx-18p4gdb4r8sqjnfac7388e0pg": "terminated",
+    "sbx-18p4gdb4r8u0473hc738rl05g": "terminated",
+    "sbx-18p4gdb4r8vnlk1mc73fo92h0": "terminated",
+    "sbx-18p4gdb4r91l9fdbs73ak82e0": "terminated",
+    "sbx-18p4gdb4r92l9fdbs73ak84n0": "terminated",
+    "sbx-18p4gdb4r95flk1mc73fo9i10": "terminated",
+    "sbx-18p4gdb4r95o473hc738rlmu0": "terminated",
+    "sbx-18p4gdb4r95qd0e5s73d71d2g": "terminated",
+    "sbx-18p4gdb4r96p42hec73en1d0g": "terminated",
+    "sbx-18p4gdb4r9bd9fdbs73ak9210": "terminated",
+    "sbx-18p4gdb4r9fh42hec73en26r0": "terminated"
   },
   "cleanup_independently_rechecked": true,
   "real_model_evidence_file": "real-model-repair.json",
-  "historical_evidence_url": "https://github.com/render-oss/langchain-rendersandbox-plugin/tree/c8de5eeb0282b07125cbec6b6ebbf6db174e6e90/validation"
+  "historical_evidence_url": "https://github.com/render-oss/langchain-rendersandbox-plugin/tree/c8de5eeb0282b07125cbec6b6ebbf6db174e6e90/validation",
+  "run_context": "Clarified that Anthropic is the example provider and that the connection check needs only Render credentials. Runtime, examples, dependencies and upstream tests unchanged.",
+  "model_api_keys_present": false,
+  "connection_example": {
+    "status": "passed",
+    "anthropic_key_present": false,
+    "sandbox_id": "sbx-18p4gdb4r8rid0e5s73d70ge0",
+    "final_status": "terminated"
+  }
 }
