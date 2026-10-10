@@ -2,11 +2,11 @@
 
 Development preview `langchain-render==0.0.1a1`. The source repository is [render-oss/langchain-rendersandbox-plugin](https://github.com/render-oss/langchain-rendersandbox-plugin); the Python package is not released on PyPI. The integration is not fully compliant with the pinned LangChain standard suite.
 
-Local validation on October 9, 2026 (270.23 seconds for the combined 97-case live run) passed **61 unit tests and all ten real-Render runtime checks**. The full unmodified LangChain suite returned **80 passed and 7 failed**, with no errors or skips. The seven failures are the documented upstream write/glob contract differences below. Test results are not suppressed. All eleven test sandboxes were independently confirmed terminated. Exact evidence is in `readme_prerequisites_run` in [live-results.json](validation/live-results.json).
+Local validation on October 9, 2026 (270.88 seconds for the combined 97-case live run) passed **61 unit tests and all ten real-Render runtime checks**. The full unmodified LangChain suite returned **80 passed and 7 failed**, with no errors or skips. The seven failures are the documented upstream write/glob contract differences below. Test results are not suppressed. All eleven test sandboxes were independently confirmed terminated. Exact evidence is in [live-results.json](validation/live-results.json).
 
 The complete repair example also passed with Claude Sonnet 4.6: the application restored trusted tests, verified all three cases, downloaded a report totaling 42, and confirmed sandbox cleanup. See [real-model evidence](validation/real-model-repair.json). This was a separate earlier model run, not part of each validation rerun.
 
-[Live run evidence](validation/live-results.json) and [upstream suite evidence](validation/repository-suite-results.json) retain source hashes, per-case results, prior failures, and verified cleanup. Local filesystem paths and workspace details are redacted in the public records. Earlier stream connection failures remain in that history; a later successful fresh run does not establish their cause.
+[Live run evidence](validation/live-results.json) and [upstream suite evidence](validation/repository-suite-results.json) retain the latest source hashes, per-case results, failures, and verified cleanup. Local filesystem paths and workspace details are redacted. [Historical evidence](https://github.com/render-oss/langchain-rendersandbox-plugin/tree/c8de5eeb0282b07125cbec6b6ebbf6db174e6e90/validation) remains available in Git history, including earlier stream connection failures whose cause was not established by later successful runs.
 
 The [integration guide](docs/guide.mdx) targets LangChain documentation. Its MDX, Mermaid syntax, and links were checked locally. Native LangChain site preview and documentation submission remain pending.
 
@@ -31,7 +31,7 @@ Every public backend method now has a real-Render check through both the synchro
 
 Fetched and ran the unmodified [sandbox suite at LangChain commit b060a746](https://github.com/langchain-ai/langchain/blob/b060a7466482ed5dac5fa1ef12e3ad21cccce385/libs/standard-tests/langchain_tests/integration_tests/sandboxes.py) on October 9, 2026. The repository still declares package version 1.1.9, but its source contains `test_execute_capture_at_source_offload`, which is absent from the published wheel. An AST comparison confirmed the other 85 test methods are identical. Including the inherited no-overrides check, the repository suite collects 87 cases.
 
-**Latest result: 80 passed, 7 failed, no errors or skips**, after the README prerequisites update (270.23 seconds for the combined runtime and upstream run). All ten runtime checks also passed. Earlier runs and exact source hashes remain in the evidence history.
+**Latest result: 80 passed, 7 failed, no errors or skips**, after the repository cleanup (270.88 seconds for the combined runtime and upstream run). All ten runtime checks also passed. Exact source hashes are recorded with the current results; earlier runs remain in Git history.
 
 The seven failures are the write/glob expectations listed below. Each also fails against the unchanged `BaseSandbox` with a trusted local command/file transport and no Render dependency. `RenderSandbox.write` and `RenderSandbox.glob` are the inherited methods by identity. This isolates the disagreement to the upstream test/current base-class contract, rather than this provider's transport. Full suite provenance, source hashes, individual outcomes and reproduction results are in [repository-suite-results.json](validation/repository-suite-results.json).
 
@@ -47,7 +47,7 @@ Pinned versions: `deepagents==0.7.23`, `render==1.2.0`, and `langchain-tests==1.
 
 The overwrite change is intentional, confirmed by merged [Deep Agents PR #4109](https://github.com/langchain-ai/deepagents/pull/4109), merge commit `77a463131c8708ee90aaad676f1e4b2da252d1ed`. The [standard suite at LangChain commit b060a746](https://github.com/langchain-ai/langchain/blob/b060a7466482ed5dac5fa1ef12e3ad21cccce385/libs/standard-tests/langchain_tests/integration_tests/sandboxes.py#L697) retains the old write assertion. In the installed Deep Agents source, `BaseSandbox.glob`, `_absolutize_glob_path` and `_GLOB_COMMAND_TEMPLATE` establish the current glob behavior. The live current-contract test verifies these semantics without overriding them.
 
-The optional [write-test correction](review/langchain-tests-overwrite.patch) and [local reproduction](review/reproduce_write_contract.py) are unsubmitted maintainer feedback. They cover only the write assertion. No patch is applied to the integration's installed dependencies or the standard suite. Updating upstream tests is a separate review task, not a runtime dependency for this package. Do not claim full compliance with this version of `langchain-tests`.
+No patch is applied to the integration's installed dependencies or the standard suite. Updating upstream tests is a separate review task, not a runtime dependency for this package. Do not claim full compliance with this version of `langchain-tests`.
 
 ## Implementation fixes and limits
 
@@ -56,8 +56,6 @@ The optional [write-test correction](review/langchain-tests-overwrite.patch) and
 - **Async helper timeouts:** The adapter checks failed state after inherited grep/glob helpers so they cannot hide cancellation as a recoverable tool result.
 - **Local cleanup:** Adapter-owned disk workers finish before their temporary directory is removed. A precreated regular-file destination prevents the SDK from extracting an unexpected directory archive. Actual SDK transport regressions verify both normal files and unexpected tar responses.
 - **Deadline scope:** Local disk operations can outlast cooperative timeouts. The SDK exposes no hard filesystem cancellation/join guarantee. A disconnected exec stream does not stop a remote process. The application owns sandbox termination, with a finite lifetime as a fallback.
-
-Independent review verified earlier file-error, async-timeout and disk-worker fixes and independently passed the then-current 38-test suite. The subsequent rate-limit and live-test changes are covered by the parent-run checks above.
 
 ## Reproduce the internal review build
 
