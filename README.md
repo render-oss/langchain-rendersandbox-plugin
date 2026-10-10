@@ -68,4 +68,4 @@ The helper creates a sandbox, waits for readiness, and verifies termination on e
 - [Configuration and existing sandboxes](VALIDATION.md#configuration-and-existing-sandboxes), plus [runtime behavior](VALIDATION.md#execution-and-file-behavior).
 - [Development and testing](VALIDATION.md#reproduce-the-internal-review-build).
 
-[Apache-2.0](LICENSE). Maintained by [Ojus (@ojusave)](https://github.com/ojusave).
+[Apache-2.0](LICENSE).
