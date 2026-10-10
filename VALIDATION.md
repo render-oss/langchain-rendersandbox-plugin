@@ -2,7 +2,7 @@
 
 Development preview `langchain-render==0.0.1a1`. The source repository is [render-oss/langchain-rendersandbox-plugin](https://github.com/render-oss/langchain-rendersandbox-plugin); the Python package is not released on PyPI. The integration is not fully compliant with the pinned LangChain standard suite.
 
-Local validation on October 9, 2026 (278.56 seconds for the combined 97-case live run) passed **61 unit tests and all ten real-Render runtime checks**. The full unmodified LangChain suite returned **80 passed and 7 failed**, with no errors or skips. The seven failures are the documented upstream write/glob contract differences below. Test results are not suppressed. All eleven test sandboxes were independently confirmed terminated. Exact evidence is in `github_publication_run` in [live-results.json](validation/live-results.json).
+Local validation on October 9, 2026 (276.67 seconds for the combined 97-case live run) passed **61 unit tests and all ten real-Render runtime checks**. The full unmodified LangChain suite returned **80 passed and 7 failed**, with no errors or skips. The seven failures are the documented upstream write/glob contract differences below. Test results are not suppressed. All eleven test sandboxes were independently confirmed terminated. Exact evidence is in `windows_checkout_fix_run` in [live-results.json](validation/live-results.json).
 
 The complete repair example also passed with Claude Sonnet 4.6: the application restored trusted tests, verified all three cases, downloaded a report totaling 42, and confirmed sandbox cleanup. See [real-model evidence](validation/real-model-repair.json). This was a separate earlier model run, not part of each validation rerun.
 
@@ -31,7 +31,7 @@ Every public backend method now has a real-Render check through both the synchro
 
 Fetched and ran the unmodified [sandbox suite at LangChain commit b060a746](https://github.com/langchain-ai/langchain/blob/b060a7466482ed5dac5fa1ef12e3ad21cccce385/libs/standard-tests/langchain_tests/integration_tests/sandboxes.py) on October 9, 2026. The repository still declares package version 1.1.9, but its source contains `test_execute_capture_at_source_offload`, which is absent from the published wheel. An AST comparison confirmed the other 85 test methods are identical. Including the inherited no-overrides check, the repository suite collects 87 cases.
 
-**Latest result: 80 passed, 7 failed, no errors or skips**, before the initial public push (278.56 seconds for the combined runtime and upstream run). All ten runtime checks also passed. Earlier runs and exact source hashes remain in the evidence history.
+**Latest result: 80 passed, 7 failed, no errors or skips**, after the Windows checkout correction (276.67 seconds for the combined runtime and upstream run). All ten runtime checks also passed. Earlier runs and exact source hashes remain in the evidence history.
 
 The seven failures are the write/glob expectations listed below. Each also fails against the unchanged `BaseSandbox` with a trusted local command/file transport and no Render dependency. `RenderSandbox.write` and `RenderSandbox.glob` are the inherited methods by identity. This isolates the disagreement to the upstream test/current base-class contract, rather than this provider's transport. Full suite provenance, source hashes, individual outcomes and reproduction results are in [repository-suite-results.json](validation/repository-suite-results.json).
 
@@ -89,6 +89,8 @@ On PowerShell, set `$env:RUN_RENDER_LIVE_TESTS="1"` before running the `uv` comm
 The default command uses all 87 cases from the unmodified LangChain repository suite at commit `b060a7466482ed5dac5fa1ef12e3ad21cccce385`. The source, MIT license and checksums are included under [tests/upstream](tests/upstream/manifest.json); the loader verifies both digests before collection. No upstream download or private harness is needed. `langchain-tests==1.1.9` remains the development dependency, and `tests/integration_tests/test_standard.py` separately runs its released 86-case suite. The repository version includes a large-output offload case absent from that release. See the [recorded contract differences](#standard-suite-contract-differences) and [per-case evidence](validation/repository-suite-results.json).
 
 ## CI and release ownership
+
+The first hosted run passed the package checks on Linux (Python 3.11 through 3.14) and macOS. Windows passed all 61 unit tests but failed upstream-suite collection because Git converted the pinned source and license to CRLF. The Windows-built archive confirmed that converting those bytes back to LF reproduced both recorded upstream hashes. `.gitattributes` now preserves all `tests/upstream/*` bytes during checkout; neither upstream source nor expected hashes were changed. See [GitHub Actions](https://github.com/render-oss/langchain-rendersandbox-plugin/actions) for subsequent hosted results.
 
 The [workflow](.github/workflows/ci.yml) checks lint, types, archives and installed-wheel unit tests on Linux with Python 3.11 through 3.14, plus macOS and Windows on Python 3.12. Actions are pinned to commit SHAs. Pull-request checks receive no Render credentials. Main-branch pushes and manual runs also run the live suite, serialized per repository, with no failure suppression.
 

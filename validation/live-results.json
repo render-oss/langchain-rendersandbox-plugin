@@ -164,7 +164,18 @@
     "sbx-18p4gdb4q7a2d0e5s73d3pin0": "terminated",
     "sbx-18p4gdb4q7b7lot8c73ckbve0": "terminated",
     "sbx-18p4gdb4q7fijnfac7385232g": "terminated",
-    "sbx-18p4gdb4q7jt9fdbs73aguqg0": "terminated"
+    "sbx-18p4gdb4q7jt9fdbs73aguqg0": "terminated",
+    "sbx-18p4gdb4qc35ckfvc73fsk370": "terminated",
+    "sbx-18p4gdb4qc48473hc738oi980": "terminated",
+    "sbx-18p4gdb4qc5vlot8c73ckr2d0": "terminated",
+    "sbx-18p4gdb4qc7p42hec73ek37u0": "terminated",
+    "sbx-18p4gdb4qc92jnfac7385iod0": "terminated",
+    "sbx-18p4gdb4qcbg473hc738oj1a0": "terminated",
+    "sbx-18p4gdb4qccajnfac7385ivhg": "terminated",
+    "sbx-18p4gdb4qcc8473hc738oj4ig": "terminated",
+    "sbx-18p4gdb4qcd2d0e5s73d47nng": "terminated",
+    "sbx-18p4gdb4qcho473hc738ojmg0": "terminated",
+    "sbx-18p4gdb4qcm0473hc738ok4i0": "terminated"
   },
   "real_model_repair_run": true,
   "upstream_source_modified": false,
@@ -234,8 +245,7 @@
     "failed": 7,
     "errors": 0,
     "skipped": 0,
-    "elapsed_seconds": 199.141,
-    "timing_scope": "Sum of upstream testcase times within the 97-case pre-publication run."
+    "elapsed_seconds": 198.517
   },
   "session_helper_run": {
     "tests": 6,
@@ -2827,5 +2837,150 @@
       "new_model_call": false
     },
     "artifact_note": "Repository URL metadata was updated during the live run; runtime, tests, examples and dependencies are unchanged. Final documentation hashes are recorded separately from the initial tested build."
+  },
+  "windows_checkout_fix_run": {
+    "command": [
+      "<checkout>/.venv/bin/python",
+      "-I",
+      "-m",
+      "pytest",
+      "--import-mode=importlib",
+      "tests/integration_tests/test_runtime.py",
+      "tests/integration_tests/test_repository_standard.py",
+      "-v",
+      "-s",
+      "--tb=short",
+      "--timeout=180",
+      "--junitxml=<checkout>/.loop/windows-ci-fix-verification/live.xml"
+    ],
+    "upstream": {
+      "repository": "langchain-ai/langchain",
+      "commit": "b060a7466482ed5dac5fa1ef12e3ad21cccce385",
+      "source_path": "libs/standard-tests/langchain_tests/integration_tests/sandboxes.py",
+      "sha256": "b6d093acc6ba462430b3cf352657908615b92c0e2580b90d485d0fbb88a943ae",
+      "license": "MIT",
+      "license_sha256": "4ec67e4ca6e6721dba849b2ca82261597c86a61ee214bbf21416006b7b2d0478",
+      "expected_cases": 87,
+      "note": "Unmodified upstream test source. Update source, license, revision and digests together; never change assertions locally."
+    },
+    "tested_source_sha256": {
+      "langchain_render/session.py": "a7e2bf7a4ac04a7a9f98917dff39a56be1c156d6e3a9745ea03ec1afd5caece7",
+      "langchain_render/__init__.py": "9b5ff25581add7f3301be6140e8b022c5860cae627bd3f85c9d8b8581b97c2d0",
+      "langchain_render/sandbox.py": "4c32b82e9a598ad7800e8a0b1c209790ce4accbdacbdc4c33fc1f7988398bc11",
+      "tests/unit_tests/test_lifecycle.py": "9aefcf3ff7aabf7c41ee9babcd1ce65126e55a01948058be4c705c87d592c0d6",
+      "tests/unit_tests/test_sandbox.py": "965d431077b4b7d7e6ce43dd3065c2a7b2531bcffa1a44d108e4a2057053643f",
+      "tests/integration_tests/test_standard.py": "07ba62b07c61233c7968b5710eff2b91ba5d165db4e3c34730987bddd1f54c16",
+      "tests/integration_tests/test_runtime.py": "c821b12c06fa300f1552b9324f7d2f06224ccc4355f4e394b03ba1717bdf310c",
+      "tests/integration_tests/test_repository_standard.py": "c853b45cbcb9288f8ba922ffd2df0f461c117335979973003bd27f5eacebed44",
+      "tests/upstream/sandboxes.py": "b6d093acc6ba462430b3cf352657908615b92c0e2580b90d485d0fbb88a943ae",
+      "examples/repair_project.py": "a5f61650eab8f893402b4ce1dd77aff3e4dd661e7aa0402fc7c7a291f06e9ce1",
+      "examples/lifecycle.py": "b35d3eebde4c5599d4b4f6851e3f1534197b35806c2705db03a2eff04923a4b4",
+      "scripts/install_wheel.py": "23b913cfd7da5e3f4172cb2cfbefc2d25a2af277632026a0dbefa4a081fc0029",
+      "scripts/check_distribution.py": "84bde3612c6361249e93ca5cb7959388925649dd6f0eb8675336df2d0ff35d21"
+    },
+    "gitattributes_sha256": "184030b8940304f623c94c0ee7f7ccecf8e15299b4e643863b51d2446b3b3e98",
+    "exit_code": 1,
+    "elapsed_seconds": 277.91490175004583,
+    "unit_summary": {
+      "tests": 61,
+      "passed": 61,
+      "seconds": 3.3
+    },
+    "combined_live_summary": {
+      "tests": 97,
+      "passed": 90,
+      "failed": 7,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 276.668,
+      "junit_sha256": "5fc48bedb5fc9582b2491366d236318f92ec35c13e8efab9a0a42fecf1a9e21c"
+    },
+    "runtime_cases": [
+      {
+        "name": "test_deep_agent_dispatches_file_and_shell_tools_to_render",
+        "outcome": "passed",
+        "seconds": 5.19
+      },
+      {
+        "name": "test_current_deepagents_write_and_glob_contract",
+        "outcome": "passed",
+        "seconds": 5.872
+      },
+      {
+        "name": "test_uncertain_execution_aborts_backend_and_owned_session_cleans_up[deadline]",
+        "outcome": "passed",
+        "seconds": 8.286
+      },
+      {
+        "name": "test_uncertain_execution_aborts_backend_and_owned_session_cleans_up[cancel]",
+        "outcome": "passed",
+        "seconds": 4.919
+      },
+      {
+        "name": "test_full_repair_walkthrough_with_scripted_model",
+        "outcome": "passed",
+        "seconds": 10.057
+      },
+      {
+        "name": "test_package_session_configuration_sdk_access_and_cleanup",
+        "outcome": "passed",
+        "seconds": 2.583
+      },
+      {
+        "name": "test_concurrent_sessions_isolate_files_and_cleanup_after_application_error",
+        "outcome": "passed",
+        "seconds": 3.178
+      },
+      {
+        "name": "test_invalid_render_key_fails_without_starting_remote_work",
+        "outcome": "passed",
+        "seconds": 0.227
+      },
+      {
+        "name": "test_all_public_backend_operations[sync]",
+        "outcome": "passed",
+        "seconds": 18.633
+      },
+      {
+        "name": "test_all_public_backend_operations[async]",
+        "outcome": "passed",
+        "seconds": 17.417
+      }
+    ],
+    "upstream_summary": {
+      "tests": 87,
+      "passed": 80,
+      "failed": 7,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 198.517
+    },
+    "new_failing_cases": [],
+    "owned_sandbox_final_states": {
+      "sbx-18p4gdb4qc35ckfvc73fsk370": "terminated",
+      "sbx-18p4gdb4qc48473hc738oi980": "terminated",
+      "sbx-18p4gdb4qc5vlot8c73ckr2d0": "terminated",
+      "sbx-18p4gdb4qc7p42hec73ek37u0": "terminated",
+      "sbx-18p4gdb4qc92jnfac7385iod0": "terminated",
+      "sbx-18p4gdb4qcbg473hc738oj1a0": "terminated",
+      "sbx-18p4gdb4qccajnfac7385ivhg": "terminated",
+      "sbx-18p4gdb4qcc8473hc738oj4ig": "terminated",
+      "sbx-18p4gdb4qcd2d0e5s73d47nng": "terminated",
+      "sbx-18p4gdb4qcho473hc738ojmg0": "terminated",
+      "sbx-18p4gdb4qcm0473hc738ok4i0": "terminated"
+    },
+    "cleanup_independently_rechecked": true,
+    "windows_checkout_proof": {
+      "core_autocrlf": true,
+      "upstream_source_hash_preserved": true,
+      "upstream_license_hash_preserved": true,
+      "standard_cases_collected": 87
+    },
+    "initial_ci": {
+      "url": "https://github.com/render-oss/langchain-rendersandbox-plugin/actions/runs/38017706320",
+      "package_jobs_passed": 5,
+      "windows_unit_tests_passed": 61,
+      "windows_collection_error": "Git CRLF conversion changed pinned upstream bytes. LF-normalizing the Windows artifact reproduces both expected hashes."
+    }
   }
 }

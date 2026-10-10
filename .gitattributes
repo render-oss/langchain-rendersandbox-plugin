@@ -1,0 +1,2 @@
+# Preserve vendored upstream bytes for checksum validation on every platform.
+tests/upstream/* -text
